@@ -1,0 +1,112 @@
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    transition: all 0.3s ease;   
+  }
+  
+  .forms-container {
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+  }
+  
+  .login-form,
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 280px;
+    transition: all 0.3s ease;
+    margin: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .forms-container {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .login-form,
+    .signup-form {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    color: #3366cc;
+    z-index: 1;
+  }
+  
+  .login-form input,
+  .signup-form input {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .login-form button,
+  .signup-form button {
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .signup-form .gender-field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .signup-form .gender-field label {
+    margin-bottom: 5px;
+  }
+  
+  .signup-form .custom-gender-input {
+    margin-top: 5px;
+    width: 100%;
+  }
+  
+  .login-form .input-field,
+  .signup-form .input-field {
+    margin-bottom: 15px;
+  }
+  
+  .login-page.signup-active {
+    justify-content: flex-start;
+  }
+  
+  .login-form.form-hidden,
+  .signup-form.form-hidden {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  
+  .login-form.form-hidden {
+    pointer-events: none;
+  }
+  
+  .signup-form.form-hidden {
+    pointer-events: none;
+  }
+  
+  .page-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3366cc;
+    margin-bottom: 20px;
+    margin-top: 5%;
+  }
+  
