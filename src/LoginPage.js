@@ -96,9 +96,9 @@ const LoginPage = () => {
 
   return (
     <ThemeProvider theme={theme}>
-    <div className={`login-page ${activeSection === 'signup' ? 'signup-active' : ''}`}>
-      <h1 className="page-title">Team Up</h1>
-      <div className="forms-container">
+      <div className="login-page">
+        <h1 className="page-title">Team Up</h1>
+        <div className="forms-container">
           <div className={`login-form ${activeSection === 'signup' ? 'form-hidden' : ''}`}>
             <h2>Login</h2>
             <TextField
