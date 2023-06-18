@@ -189,7 +189,7 @@ const LoginPage = () => {
               }}
             />
             <FormControl className="gender-field">
-              <FormLabel component="legend">Gender</FormLabel>
+              <FormLabel>Gender</FormLabel>
               <RadioGroup
                 aria-label="gender"
                 name="gender"
