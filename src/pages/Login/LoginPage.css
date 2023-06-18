@@ -1,11 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #333333;
+  color: #ffffff;
+}
+
 .login-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* height: 100vh; */
-  background-color: #f5f5f5;
+  background-color: #333333;
   transition: all 0.3s ease;
+  color: #ffffff;
 }
 
 .forms-container {
@@ -14,20 +21,35 @@
   max-width: 600px;
   margin: 0 auto;
   transition: all 0.3s ease;
+  justify-content: center;
+  background-color: #333333;
+  color: #ffffff;
 }
 
 .login-form,
 .signup-form {
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 20px;
   border-radius: 5px;
-  background-color: #ffffff;
+  background-color: #222222;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   width: 280px;
   transition: all 0.3s ease;
+  height: fit-content;
+  color: #ffffff;
+}
+
+.login-form {
+  z-index: 1;
+}
+
+.signup-form {
+  z-index: 0;
 }
 
 @media (max-width: 768px) {
@@ -45,37 +67,25 @@
 
 h2 {
   margin-bottom: 20px;
-  color: #3366cc;
+  color: #ffffff;
   z-index: 1;
 }
 
 .login-form input,
-.signup-form input {
-  margin-bottom: 10px;
-  width: 100%;
-}
-
+.signup-form input,
 .login-form button,
-.signup-form button {
-  margin-top: 10px;
-  width: 100%;
+.signup-form button,
+.signup-form .gender-field label,
+.signup-form .custom-gender-input,
+.page-title {
+  color: #ffffff;
 }
 
-.signup-form .gender-field {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.signup-form .gender-field label {
-  margin-bottom: 5px;
-}
-
-.signup-form .custom-gender-input {
-  margin-top: 5px;
-  width: 100%;
+.login-form input::placeholder,
+.signup-form input::placeholder,
+.login-form label,
+.signup-form label {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .login-form .input-field,
@@ -105,7 +115,6 @@ h2 {
 .page-title {
   font-size: 24px;
   font-weight: bold;
-  color: #3366cc;
+  color: #ffffff;
   margin-bottom: 20px;
-  /* margin-top: 5%; */
 }

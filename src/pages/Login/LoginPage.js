@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   TextField,
   Button,
@@ -9,25 +9,26 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-} from '@mui/material';
-import './LoginPage.css'; // Import the CSS file
+} from "@mui/material";
+import blue from "@mui/material/colors/blue";
+import grey from "@mui/material/colors/grey";
+import "./LoginPage.css";
 
 const LoginPage = () => {
-  const [activeSection, setActiveSection] = useState('login');
-
+  const [activeSection, setActiveSection] = useState("login");
   const handleToggleSection = () => {
-    setActiveSection(activeSection === 'login' ? 'signup' : 'login');
+    setActiveSection(activeSection === "login" ? "signup" : "login");
   };
 
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
-  const [signupEmail, setSignupEmail] = useState('');
-  const [signupPassword, setSignupPassword] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [gender, setGender] = useState('');
-  const [customGender, setCustomGender] = useState('');
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [signupEmail, setSignupEmail] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [gender, setGender] = useState("");
+  const [customGender, setCustomGender] = useState("");
   const [passwordError, setPasswordError] = useState(false);
 
   const handleLoginEmailChange = (e) => {
@@ -62,8 +63,8 @@ const LoginPage = () => {
   const handleGenderChange = (e) => {
     const value = e.target.value;
     setGender(value);
-    if (value !== 'custom') {
-      setCustomGender('');
+    if (value !== "custom") {
+      setCustomGender("");
     }
   };
 
@@ -74,22 +75,23 @@ const LoginPage = () => {
 
   const handleLogin = () => {
     // TODO: Implement login functionality
-    console.log('Login clicked');
+    console.log("Login clicked");
   };
 
   const handleSignup = () => {
     // TODO: Implement signup functionality
-    console.log('Signup clicked');
+    console.log("Signup clicked");
   };
 
-  // Customize the theme
   const theme = createTheme({
     palette: {
+      type: "dark",
       primary: {
-        main: '#2196f3', // Update primary color
+        main: blue[500],
       },
-      secondary: {
-        main: '#f44336', // Update secondary color
+      background: {
+        default: grey[900],
+        paper: grey[800],
       },
     },
   });
@@ -99,7 +101,11 @@ const LoginPage = () => {
       <div className="login-page">
         <h1 className="page-title">Team Up</h1>
         <div className="forms-container">
-          <div className={`login-form ${activeSection === 'signup' ? 'form-hidden' : ''}`}>
+          <div
+            className={`login-form ${
+              activeSection === "signup" ? "form-hidden" : ""
+            }`}
+          >
             <h2>Login</h2>
             <TextField
               type="email"
@@ -119,14 +125,18 @@ const LoginPage = () => {
               fullWidth
               className="input-field"
             />
-            <Button variant="contained" color="primary" onClick={handleLogin} fullWidth>
+            <Button variant="contained" onClick={handleLogin} fullWidth>
               Login
             </Button>
-            <Button variant="outlined" color="secondary" onClick={handleToggleSection} fullWidth>
-              Sign Up
-            </Button>
+            <p className="toggle-section-link" onClick={handleToggleSection}>
+              Don't have an account? Sign up
+            </p>
           </div>
-          <div className={`signup-form ${activeSection === 'login' ? 'form-hidden' : ''}`}>
+          <div
+            className={`signup-form ${
+              activeSection === "login" ? "form-hidden" : ""
+            }`}
+          >
             <h2>Sign Up</h2>
             <TextField
               type="email"
@@ -152,13 +162,13 @@ const LoginPage = () => {
               variant="outlined"
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
-              error={passwordError}
-              helperText={passwordError ? 'Passwords do not match' : ''}
               fullWidth
               className="input-field"
+              error={passwordError}
+              helperText={passwordError && "Passwords do not match"}
             />
             <TextField
-              type="text"
+              type="tel"
               label="Phone Number"
               variant="outlined"
               value={phoneNumber}
@@ -173,41 +183,64 @@ const LoginPage = () => {
               value={dateOfBirth}
               onChange={handleDateOfBirthChange}
               fullWidth
+              className="input-field"
               InputLabelProps={{
                 shrink: true,
               }}
-              className="input-field"
             />
-            <FormControl component="fieldset" className="input-field">
+            <FormControl className="gender-field">
               <FormLabel component="legend">Gender</FormLabel>
               <RadioGroup
                 aria-label="gender"
                 name="gender"
                 value={gender}
                 onChange={handleGenderChange}
+                className="input-field"
               >
-                <FormControlLabel value="male" control={<Radio />} label="Male" />
-                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                <FormControlLabel value="custom" control={<Radio />} label="Custom Gender" />
+                <FormControlLabel
+                  value="male"
+                  control={<Radio />}
+                  label="Male"
+                />
+                <FormControlLabel
+                  value="female"
+                  control={<Radio />}
+                  label="Female"
+                />
+                <FormControlLabel
+                  value="other"
+                  control={<Radio />}
+                  label="Other"
+                />
+                <FormControlLabel
+                  value="custom"
+                  control={<Radio />}
+                  label="Custom"
+                />
               </RadioGroup>
-              {gender === 'custom' && (
+              {gender === "custom" && (
                 <TextField
                   type="text"
-                  label="Enter Custom Gender"
+                  label="Custom Gender"
                   variant="outlined"
                   value={customGender}
                   onChange={handleCustomGenderChange}
                   fullWidth
-                  className="input-field"
+                  className="custom-gender-input"
                 />
               )}
             </FormControl>
-            <Button variant="contained" color="primary" onClick={handleSignup} fullWidth>
+            <Button
+              variant="contained"
+              onClick={handleSignup}
+              fullWidth
+              disabled={!signupEmail || !signupPassword || passwordError}
+            >
               Sign Up
             </Button>
-            <Button variant="outlined" color="secondary" onClick={handleToggleSection} fullWidth>
-              Login
-            </Button>
+            <p className="toggle-section-link" onClick={handleToggleSection}>
+              Already have an account? Login
+            </p>
           </div>
         </div>
       </div>
