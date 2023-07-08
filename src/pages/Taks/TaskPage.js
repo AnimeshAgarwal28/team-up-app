@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TeamManagementPage = () => {
+const TeamManagementPage = ({ onLogout }) => {
   const [tasks, setTasks] = useState([
     { id: 1, title: "Task 1", completed: false },
     { id: 2, title: "Task 2", completed: true },
@@ -13,6 +13,11 @@ const TeamManagementPage = () => {
         task.id === taskId ? { ...task, completed: !task.completed } : task
       )
     );
+  };
+
+  const handleLogout = () => {
+    // Call the onLogout function passed from the App component
+    onLogout();
   };
 
   return (
@@ -29,6 +34,7 @@ const TeamManagementPage = () => {
           <span style={{ textDecoration: task.completed ? "line-through" : "none" }}>{task.title}</span>
         </div>
       ))}
+      <button onClick={handleLogout}>Logout</button> {/* Add logout button */}
     </div>
   );
 };

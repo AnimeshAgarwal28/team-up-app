@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import {
   TextField,
   Button,
@@ -9,12 +11,26 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  Snackbar
 } from "@mui/material";
 import blue from "@mui/material/colors/blue";
 import grey from "@mui/material/colors/grey";
 import "./LoginPage.css";
 
-const LoginPage = () => {
+const firebaseConfig = {
+  apiKey: "AIzaSyCKz5D_mXFpOx4bCC1GZy5TZW7y3cijXBM",
+  authDomain: "team-up-7494c.firebaseapp.com",
+  projectId: "team-up-7494c",
+  storageBucket: "team-up-7494c.appspot.com",
+  messagingSenderId: "282247578056",
+  appId: "1:282247578056:web:6eb7c6f3185e505e9fc0fd",
+  measurementId: "G-T02RPYKCVB"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const LoginPage = ({onLogin}) => {
   const [activeSection, setActiveSection] = useState("login");
   const handleToggleSection = () => {
     setActiveSection(activeSection === "login" ? "signup" : "login");
@@ -72,16 +88,50 @@ const LoginPage = () => {
     const value = e.target.value;
     setCustomGender(value);
   };
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
 
   const handleLogin = () => {
-    // TODO: Implement login functionality
-    console.log("Login clicked");
+    signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+      .then((userCredential) => {
+        // Login successful, do something with the user
+        onLogin();
+        const user = userCredential.user;
+        console.log("Login successful:", user);
+      })
+      .catch((error) => {
+        // Handle errors during login
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        
+        if (errorCode === "auth/wrong-password") {
+          // Set the notification message and show the notification
+          setNotificationMessage("Incorrect password");
+          setShowNotification(true);
+        } else {
+          // Handle other errors
+          console.log("Login error:", errorCode, errorMessage);
+        }
+      });
   };
-
+  
+  
+  
   const handleSignup = () => {
-    // TODO: Implement signup functionality
-    console.log("Signup clicked");
+    createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
+      .then((userCredential) => {
+        // Signup successful, do something with the user
+        const user = userCredential.user;
+        console.log("Signup successful:", user);
+      })
+      .catch((error) => {
+        // Handle errors during signup
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("Signup error:", errorCode, errorMessage);
+      });
   };
+  
 
   const theme = createTheme({
     palette: {
@@ -95,7 +145,6 @@ const LoginPage = () => {
       },
     },
   });
-
   return (
     <ThemeProvider theme={theme}>
       <div className="login-page">
@@ -183,7 +232,7 @@ const LoginPage = () => {
               value={dateOfBirth}
               onChange={handleDateOfBirthChange}
               fullWidth
-              className="input-field"
+             className="input-field"
               InputLabelProps={{
                 shrink: true,
               }}
@@ -243,6 +292,12 @@ const LoginPage = () => {
             </p>
           </div>
         </div>
+        <Snackbar
+          open={showNotification}
+          autoHideDuration={4000}
+          onClose={() => setShowNotification(false)}
+          message={notificationMessage}
+        />
       </div>
     </ThemeProvider>
   );
