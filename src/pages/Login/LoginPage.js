@@ -141,8 +141,8 @@ const LoginPage = ({ onLogin }) => {
         main: blue[500],
       },
       background: {
-        default: grey[900],
-        paper: grey[800],
+        default: "#2e3440",
+        paper: "#3b4252",
       },
     },
   });

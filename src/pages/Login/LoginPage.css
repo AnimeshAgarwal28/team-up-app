@@ -3,8 +3,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #333333;
-  color: #ffffff;
+  background-color: #2e3440;
+  color: #d8dee9;
   font-family: "Roboto", sans-serif;
 }
 
@@ -13,8 +13,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #282828;
-  color: #ebdbb2;
+  background-color: #3b4252;
+  color: #e5e9f0;
   transition: all 0.3s ease;
 }
 
@@ -25,10 +25,10 @@ body {
   margin: 0 auto;
   transition: all 0.3s ease;
   justify-content: center;
-  background-color: #282828;
+  background-color: #3b4252;
 }
 
-/* Rest of the CSS code with Gruvbox color scheme */
+/* Rest of the CSS code with Nord color scheme */
 
 .login-form,
 .signup-form {
@@ -40,13 +40,13 @@ body {
   justify-content: center;
   padding: 20px;
   border-radius: 5px;
-  background-color: #222222;
+  background-color: #434c5e;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   width: 280px;
   transition: all 0.3s ease;
   height: fit-content;
-  color: #ffffff;
+  color: #e5e9f0;
 }
 
 .login-form {
@@ -72,7 +72,7 @@ body {
 
 h2 {
   margin-bottom: 20px;
-  color: #ffffff;
+  color: #e5e9f0;
   z-index: 1;
 }
 
@@ -83,14 +83,14 @@ h2 {
 .signup-form .gender-field label,
 .signup-form .custom-gender-input,
 .page-title {
-  color: #ffffff;
+  color: #e5e9f0;
 }
 
 .login-form input::placeholder,
 .signup-form input::placeholder,
 .login-form label,
 .signup-form label {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(229, 233, 240, 0.7);
 }
 
 .login-form .input-field,
@@ -120,9 +120,10 @@ h2 {
 .page-title {
   font-size: 72px;
   font-weight: bold;
-  color: #ffffff;
+  color: #e5e9f0;
   margin-bottom: 20px;
 }
+
 .signup-form .gender-field {
   display: flex;
   flex-direction: column;
