@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import LoginPage from './pages/Login/LoginPage';
-import TaskPage from './pages/Taks/TaskPage';
+import React, { useState } from "react";
+import LoginPage from "./pages/Login/LoginPage";
+import HomePage from "./pages/Home/HomePage";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -15,7 +15,11 @@ const App = () => {
 
   return (
     <div className="app">
-      {loggedIn ? <TaskPage onLogout={handleLogout} /> : <LoginPage onLogin={handleLogin} />}
+      {loggedIn ? (
+        <HomePage onLogout={handleLogout} />
+      ) : (
+        <LoginPage onLogin={handleLogin} />
+      )}
     </div>
   );
 };

@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import {
   TextField,
   Button,
@@ -11,7 +15,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-  Snackbar
+  Snackbar,
 } from "@mui/material";
 import blue from "@mui/material/colors/blue";
 import grey from "@mui/material/colors/grey";
@@ -24,13 +28,13 @@ const firebaseConfig = {
   storageBucket: "team-up-7494c.appspot.com",
   messagingSenderId: "282247578056",
   appId: "1:282247578056:web:6eb7c6f3185e505e9fc0fd",
-  measurementId: "G-T02RPYKCVB"
+  measurementId: "G-T02RPYKCVB",
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const LoginPage = ({onLogin}) => {
+const LoginPage = ({ onLogin }) => {
   const [activeSection, setActiveSection] = useState("login");
   const handleToggleSection = () => {
     setActiveSection(activeSection === "login" ? "signup" : "login");
@@ -103,7 +107,7 @@ const LoginPage = ({onLogin}) => {
         // Handle errors during login
         const errorCode = error.code;
         const errorMessage = error.message;
-        
+
         if (errorCode === "auth/wrong-password") {
           // Set the notification message and show the notification
           setNotificationMessage("Incorrect password");
@@ -114,9 +118,7 @@ const LoginPage = ({onLogin}) => {
         }
       });
   };
-  
-  
-  
+
   const handleSignup = () => {
     createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
       .then((userCredential) => {
@@ -131,7 +133,6 @@ const LoginPage = ({onLogin}) => {
         console.log("Signup error:", errorCode, errorMessage);
       });
   };
-  
 
   const theme = createTheme({
     palette: {
@@ -232,7 +233,7 @@ const LoginPage = ({onLogin}) => {
               value={dateOfBirth}
               onChange={handleDateOfBirthChange}
               fullWidth
-             className="input-field"
+              className="input-field"
               InputLabelProps={{
                 shrink: true,
               }}
