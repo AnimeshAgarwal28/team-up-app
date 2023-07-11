@@ -10,13 +10,17 @@ const App = () => {
   };
 
   const handleLogout = () => {
-    setLoggedIn(false); // Update the loggedIn state to false
+    setLoggedIn(false);
+  };
+
+  const handleNavigateToProject = (projectId) => {
+    console.log("Navigating to Project", projectId);
   };
 
   return (
     <div className="app">
       {loggedIn ? (
-        <HomePage onLogout={handleLogout} />
+        <HomePage onLogout={handleLogout} onNavigateToProject={handleNavigateToProject} />
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}
