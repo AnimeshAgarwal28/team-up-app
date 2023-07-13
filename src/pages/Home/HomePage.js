@@ -11,6 +11,7 @@ class HomePage extends Component {
         { id: 1, title: "Project 1", thumbnail: "https://picsum.photos/1000/1500.jpg?random=1" },
         { id: 2, title: "Project 2", thumbnail: "https://picsum.photos/1000/1500.jpg?random=2" },
         { id: 3, title: "Project 3", thumbnail: "https://picsum.photos/1000/1500.jpg?random=3" },
+        { id: 4, title: "Project 4", thumbnail: "https://picsum.photos/1000/1500.jpg?random=4" },
       ],
       showProject1: false, // Add a state variable to control rendering of Project1 page
     };

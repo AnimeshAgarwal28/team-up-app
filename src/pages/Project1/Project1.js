@@ -28,7 +28,7 @@ const Project1 = ({ onGoBack }) => {
         <div className="hamburger-menu">
           <button>Account</button>
           <button>Settings</button>
-          <button onClick={onGoBack}>Logout</button>
+          <button onClick={onGoBack}>Go back</button>
         </div>
       </div>
       <h2 className="homepage-heading">Project 1 Page</h2>
