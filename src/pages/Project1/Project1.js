@@ -5,6 +5,8 @@ const Project1 = ({ onGoBack }) => {
   const [activeTab, setActiveTab] = useState("tasks");
   const [showChatMenu, setShowChatMenu] = useState(false);
   const [chats, setChats] = useState([]);
+  const [inputText, setInputText] = useState("");
+  const [output, setOutput] = useState("");
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -20,6 +22,34 @@ const Project1 = ({ onGoBack }) => {
       { id: 2, message: "Sample message 2" },
       { id: 3, message: "Sample message 3" },
     ]);
+  };
+
+  // Add a function to handle sending a chat message
+  const sendChatMessage = (message) => {
+    setInputText(message);
+    sendQuery();
+  };
+
+  const sendQuery = () => {
+    // Perform the API call and update the output state accordingly
+    // Replace <my api token> with your actual API token
+
+    fetch(
+      "https://api-inference.huggingface.co/models/SEBIS/code_trans_t5_large_code_comment_generation_java_multitask_finetune",
+      {
+        headers: {
+          Authorization: "Bearer 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",
+        },
+        method: "POST",
+        body: JSON.stringify({ inputs: inputText }),
+      }
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        const summaryText = result[0]?.summary_text;
+        setOutput(summaryText || "No response");
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -53,33 +83,46 @@ const Project1 = ({ onGoBack }) => {
         </button>
         <button
           className={activeTab === "chat" ? "active" : ""}
-          onClick={toggleChatMenu}
+          onClick={() => {
+            handleTabClick("chat");
+            toggleChatMenu();
+          }}
         >
           Chat
         </button>
       </div>
+
       <div className="tab-content">
         {activeTab === "tasks" && <div>Tasks content</div>}
         {activeTab === "files" && <div>Files content</div>}
         {activeTab === "schedule" && <div>Schedule content</div>}
         {activeTab === "chat" && (
-          <div className={`chat-menu ${showChatMenu ? "open" : ""}`}>
-            <button className="add-chats-button" onClick={addSampleChats}>
-              Add Sample Chats
-            </button>
-            {chats.length === 0 ? (
-              <div className="no-chats-message">No chats available</div>
-            ) : (
-              <ul className="chat-list">
-                {chats.map((chat) => (
-                  <li key={chat.id} className="chat-item">
-                    {chat.message}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        )}
+  <div className={`chat-menu ${showChatMenu ? "open" : ""}`}>
+    {chats.length === 0 ? (
+      <div className="no-chats-message">No chats available</div>
+    ) : (
+      <ul className="chat-list">
+        {chats.map((chat) => (
+          <li key={chat.id} className="chat-item">
+            {chat.message}
+          </li>
+        ))}
+      </ul>
+    )}
+   <div>
+  <textarea
+    id="inputText"
+    placeholder="Enter your code"
+    value={inputText}
+    onChange={(e) => setInputText(e.target.value)}
+  />
+  <button onClick={sendQuery}>Send</button>
+</div>
+
+    <div id="output">{output}</div>
+  </div>
+)}
+
       </div>
     </div>
   );
