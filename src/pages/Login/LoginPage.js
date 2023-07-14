@@ -20,9 +20,10 @@ import {
 import blue from "@mui/material/colors/blue";
 import grey from "@mui/material/colors/grey";
 import "./LoginPage.css";
+import config from "../../config"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCKz5D_mXFpOx4bCC1GZy5TZW7y3cijXBM",
+  apiKey: config.API_KEY_FIREBASE,
   authDomain: "team-up-7494c.firebaseapp.com",
   projectId: "team-up-7494c",
   storageBucket: "team-up-7494c.appspot.com",
