@@ -37,7 +37,8 @@
   justify-content: space-between;
   background-color: #3b4252;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .task-bar button {
