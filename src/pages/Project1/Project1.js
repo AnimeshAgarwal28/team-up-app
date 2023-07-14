@@ -5,7 +5,7 @@ import config from "../../config"
 const Project1 = ({ onGoBack }) => {
   const [activeTab, setActiveTab] = useState("tasks");
   const [showChatMenu, setShowChatMenu] = useState(false);
-  const [chats, setChats] = useState([]);
+  const [chats] = useState([]);
   const [inputText, setInputText] = useState("");
   const [output, setOutput] = useState("");
 
