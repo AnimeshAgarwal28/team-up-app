@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Project1.css"; // Import the CSS file for Project1
+import config from "../../config"
 
 const Project1 = ({ onGoBack }) => {
   const [activeTab, setActiveTab] = useState("tasks");
@@ -38,7 +39,7 @@ const Project1 = ({ onGoBack }) => {
       "https://api-inference.huggingface.co/models/SEBIS/code_trans_t5_large_code_comment_generation_java_multitask_finetune",
       {
         headers: {
-          Authorization: "Bearer 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",
+          Authorization: config.API_KEY,
         },
         method: "POST",
         body: JSON.stringify({ inputs: inputText }),
