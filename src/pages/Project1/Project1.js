@@ -17,24 +17,9 @@ const Project1 = ({ onGoBack }) => {
     setShowChatMenu((prevState) => !prevState);
   };
 
-  const addSampleChats = () => {
-    setChats([
-      { id: 1, message: "Sample message 1" },
-      { id: 2, message: "Sample message 2" },
-      { id: 3, message: "Sample message 3" },
-    ]);
-  };
-
-  // Add a function to handle sending a chat message
-  const sendChatMessage = (message) => {
-    setInputText(message);
-    sendQuery();
-  };
 
   const sendQuery = () => {
     // Perform the API call and update the output state accordingly
-    // Replace <my api token> with your actual API token
-
     fetch(
       "https://api-inference.huggingface.co/models/SEBIS/code_trans_t5_large_code_comment_generation_java_multitask_finetune",
       {
